@@ -29,11 +29,11 @@ for key in list_100:
                         sum += y
                     elif x == len(row)-1:
                         sum += y
-                        definite_row.append(sum/100)
-                    elif x % 100 != 0:
+                        definite_row.append(sum/2)
+                    elif x % 2 != 0:
                         sum += y
                     else:
-                        definite_row.append(sum/100)
+                        definite_row.append(sum/2)
                         sum = 0
                         sum += y
 
@@ -47,23 +47,16 @@ for key in list_10:
         with myzip.open(key) as myfile:
             df = pd.read_table(myfile, header=None)
 
+            # df.to_csv(header=None, index=None)
             for i in range(2205):
                 row = df.loc[i, :].values.tolist()
                 definite_row = []
                 sum = 0
 
                 for x, y in enumerate(row):
-                    if x == 0:
-                        sum += y
-                    elif x == len(row)-1:
-                        sum += y
-                        definite_row.append(sum/10)
-                    elif x % 10 != 0:
-                        sum += y
-                    else:
-                        definite_row.append(sum/10)
-                        sum = 0
-                        sum += y
+                    definite_row.append(y)
 
-                writer.writerow(definite_row)
-                del definite_row[:]
+
+
+            writer.writerow(definite_row)
+            del definite_row[:]
